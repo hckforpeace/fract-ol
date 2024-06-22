@@ -6,20 +6,35 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 23:46:11 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/20 11:43:54 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/22 14:38:59 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+int	main(int argc, char **argv)
+{
+	if (argc == 2 && !ft_strcmp(argv[1], "Mandelbrot"))
+		jober(argv[1], 0, 0);
+	else if (argc == 4 && !ft_strcmp(argv[1], "Julia"))
+	{
+		printf("x: %f, y: %f\n", ft_atof(argv[2]), ft_atof(argv[3]));
+		jober("Julia", ft_atof(argv[2]), ft_atof(argv[3]));
+	}
+	else
+		display_info(0, NULL);
+	return (0);
+}
 
-int	main(int argc, char **argv, char **envp)
+int	jober(char	*frctl, double x, double y)
 {
 	t_vars	*data;
 
-	data = init_vars(1920, 1080, "FRACTOL");
-	// set_bckclr(data->img_data, 1920, 1080, 0x00FFFFFF);
-	pixel_setter(data);
+	data = init_vars(1920.0, 1080.0, "FRACTOL", frctl);
+	data->frctl->cx = x;
+	data->frctl->cy = y;
+	if (pixel_setter(data) < 0)
+		display_info(1, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_data->img, 0, 0);
 	set_hooks(data);
 	mlx_loop(data->mlx);
@@ -45,13 +60,21 @@ void	set_bckclr(t_data *data, int dimx, int dimy, int color)
 	}
 }
 
-t_vars	*init_vars(int size_x, int size_y, char *win_name)
+t_vars	*init_vars(int size_x, int size_y, char *win_name, char *frct)
 {
 	t_vars	*data;
 
 	data = (struct s_vars*)malloc(sizeof(struct s_vars));
+	if (!data)
+		display_info(1, data);
 	data->img_data = (struct s_data*)malloc(sizeof(struct s_data));
-
+	if (!data->img_data)
+		display_info(1, data);
+	data->precision = 100;
+	data->scale = 1.0 / 350.0;
+	data->frctl = (struct s_fractal*)malloc(sizeof(struct s_fractal));
+	if (!data->frctl)
+		display_info(1, data);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, size_x, size_y, win_name);
 	data->img_data->img = mlx_new_image(data->mlx, size_x, size_y);
@@ -59,6 +82,7 @@ t_vars	*init_vars(int size_x, int size_y, char *win_name)
 	&data->img_data->line_length, &data->img_data->endian);
 	data->win_x = size_x;
 	data->win_y = size_y;
+	data->frc_name = frct;
 	return (data);
 }
 
@@ -68,28 +92,4 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
-}
-void	set_hooks(t_vars *data)
-{
-	mlx_key_hook(data->win, close_windows, data);
-	mlx_hook(data->win, 17, 0, close_page, data);
-}
-
-void pixel_setter(t_vars *data)
-{
-	double	x;
-	double	y;
-
-	x = 0;
-	y = 0;
-	while (x < data->win_x)
-	{
-		while (y < data->win_y)
-		{
-			mandelbrot(data, x, y, 1.0 / 400.0);
-			y++;
-		}
-		y = 0;
-		x++;
-	}
 }

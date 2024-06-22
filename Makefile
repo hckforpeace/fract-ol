@@ -1,7 +1,9 @@
-SRC= main.c	hooks.c colors_bitshift.c mandelbrot.c
+SRC= main.c	hooks.c colors_bitshift.c fractol.c utils.c pixels.c
 OBJ= $(addprefix src/,$(SRC:.c=.o))
 NAME= fract-ol
 # CFLAGS= -Wall -Wextra -Werror
+
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft
@@ -16,3 +18,4 @@ clean:
 fclean: clean
 	make fclean -C libft
 	rm -f $(NAME)
+re: fclean all

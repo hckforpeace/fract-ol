@@ -6,15 +6,13 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 00:14:46 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/17 15:38:28 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/22 14:38:09 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fractol.h"
+
 /* Bit Shifting | is or binary '<< x' means left shift addind x:0 before aka shifting to the left*/
-int	create_trgb(int t, int r, int g, int b)
-{
-	return (t << 24 | r << 16 | g << 8 | b);
-}
 /* reversing the process herw we want to retreive the T which is the transparency */
 int	get_t(int trgb)
 {
@@ -48,9 +46,4 @@ int	invert(int	color)
 	b = get_b(color);
 	t = get_t(color);
 	return (create_trgb(t, 255 - r, 255 - g, 255 - b));
-}
-
-int	add_shade(float shade, int color)
-{
-		return (create_trgb(get_t(color) * shade, get_r(color) * shade, get_g(color) * shade, get_b(color) * shade));	
 }

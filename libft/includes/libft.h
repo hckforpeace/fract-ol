@@ -6,7 +6,7 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:24:41 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/03 17:50:16 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/21 15:35:29 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,9 @@ int		add_node(t_list **lst, int len, char *buffer);
 char	*get_string(t_list *lst);
 int		get_total_length(t_list *lst);
 int		ft_setter(char *buffer);
+
+//  math
+int	ft_pow(int i, int pow);
+double	ft_atof(const char *string);
 
 #endif
