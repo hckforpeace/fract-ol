@@ -32,11 +32,14 @@ int	pixel_setter(t_vars *data)
 	}
 	return (0);
 }
+
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
+
 int	add_shade(float shade, int color)
 {
-	return (create_trgb(get_t(color) * shade, get_r(color) * shade, get_g(color) * shade, get_b(color) * shade));	
+	return (create_trgb(get_t(color) * shade, get_r(color) * shade,
+			get_g(color) * shade, get_b(color) * shade));
 }

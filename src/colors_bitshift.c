@@ -12,29 +12,34 @@
 
 #include "fractol.h"
 
-/* Bit Shifting | is or binary '<< x' means left shift addind x:0 before aka shifting to the left*/
-/* reversing the process herw we want to retreive the T which is the transparency */
+/* Bit Shifting | is or binary '<< x' means left shift 
+ * addind x:0 before aka shifting to the left*/
+/* reversing the process herw we want to retreive the T 
+ * which is the transparency */
 int	get_t(int trgb)
 {
 	return ((trgb >> 24) & 0xFF);
 }
+
 /* same for red */
 int	get_r(int trgb)
 {
 	return ((trgb >> 16) & 0xFF);
 }
+
 /* same for green */
 int	get_g(int trgb)
 {
 	return ((trgb >> 8) & 0xFF);
 }
+
 /* same for blue */
 int	get_b(int trgb)
 {
 	return (trgb & 0xFF);
 }
 
-int	invert(int	color)
+int	invert(int color)
 {
 	int	r;
 	int	g;

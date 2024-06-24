@@ -29,6 +29,7 @@ static double	get_decimal(const char *num)
 	decimal /= ft_pow(10, numb_len(decimal, 10) + zero);
 	return (decimal);
 }
+
 double	ft_atof(const char *string)
 {
 	double	result;
@@ -45,4 +46,3 @@ double	ft_atof(const char *string)
 		return (result * -1);
 	return (result);
 }
-

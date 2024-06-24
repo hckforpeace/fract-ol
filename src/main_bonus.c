@@ -1,6 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/24 01:10:42 by pierre            #+#    #+#             */
+/*   Updated: 2024/06/24 01:31:38 by pierre           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
@@ -30,6 +42,8 @@ int	jober(char	*frctl, double x, double y)
 	data = init_vars(1920.0, 1080.0, "FRACTOL", frctl);
 	data->frctl->cx = x;
 	data->frctl->cy = y;
+	data->moveviewx = 0;
+	data->moveviewy = 0;
 	if (pixel_setter(data) < 0)
 		free_vars(data, 1);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_data->img, 0, 0);
@@ -37,25 +51,6 @@ int	jober(char	*frctl, double x, double y)
 	mlx_loop(data->mlx);
 	return (0);
 }
-
-/* void	set_bckclr(t_data *data, int dimx, int dimy, int color)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (x < dimx)
-	{
-		while (y < dimy)
-		{
-			my_mlx_pixel_put(data, x, y, color);
-			y++;
-		}
-		y = 0;
-		x++;
-	}
-} */
 
 t_vars	*init_vars(int size_x, int size_y, char *win_name, char *frct)
 {

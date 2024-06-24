@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   fractol_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:41:05 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/22 20:18:06 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/24 01:52:35 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	setbase(t_vars *data, double x, double y)
 	if (!loops)
 		return (1);
 	*loops = 0;
-	data->frctl->x = (x - (data->win_x / 2)) * data->scale;
-	data->frctl->y = ((data->win_y / 2) - y) * data->scale;
+	data->frctl->x = ((x + data->moveviewx) - (data->win_x / 2)) * data->scale;
+	data->frctl->y = ((data->win_y / 2) - (y + data->moveviewy)) * data->scale;
 	module = get_module(data->frctl->x, data->frctl->y);
 	if (module > 4)
 		my_mlx_pixel_put(data->img_data, x, y, add_shade(0, 0xF0FF0020));
