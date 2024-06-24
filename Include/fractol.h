@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:13:49 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 01:58:54 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/24 19:34:55 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <mlx.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <X11/keysym.h>
+#include <X11/X.h>
 #include "libft.h"
 
 typedef struct	s_data {
@@ -47,6 +49,7 @@ typedef struct	s_vars {
 	int			moveviewx;
 	int			moveviewy;
 	double		scale;
+	int			color;
 }	t_vars;
 
 

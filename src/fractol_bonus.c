@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:41:05 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 01:52:35 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/24 18:51:16 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	setbase(t_vars *data, double x, double y)
 	data->frctl->y = ((data->win_y / 2) - (y + data->moveviewy)) * data->scale;
 	module = get_module(data->frctl->x, data->frctl->y);
 	if (module > 4)
-		my_mlx_pixel_put(data->img_data, x, y, add_shade(0, 0xF0FF0020));
+		my_mlx_pixel_put(data->img_data, x, y, 0);
 	else if (getnextfract(data, loops))
-		my_mlx_pixel_put(data->img_data, x, y, 0x00000000);
+		my_mlx_pixel_put(data->img_data, x, y, data->color);
 	else
 	{
-		idx = *loops / data->scale;
-		my_mlx_pixel_put(data->img_data, x, y, add_shade(idx, 0x00F24361));
+		idx = *loops / (1.0 / data->precision);
+		my_mlx_pixel_put(data->img_data, x, y, add_shade(idx, data->color));
 	}
 	free(loops);
 	return (0);

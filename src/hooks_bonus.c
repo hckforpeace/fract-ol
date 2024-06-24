@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:11:47 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 02:13:46 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/24 19:34:18 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	key_events(int keycode, t_vars *params)
 {
-	if (keycode == ESC || keycode == 115 || keycode == 97
-		|| keycode == 65361 || keycode == 65363
-		|| keycode == 65362 || keycode == 65364)
+	if (keycode == XK_Escape || keycode == XK_r || keycode == XK_a || keycode == XK_s || keycode == XK_c
+		|| keycode == XK_Left || keycode == XK_Right || keycode == XK_g
+		|| keycode == XK_b || keycode == XK_Down || keycode == XK_Up)
 		apply_action(params, keycode);
 	fprintf(stderr, "keycode: %d\n", keycode);
 	return (1);
@@ -26,14 +26,18 @@ int	mousemoves(int button, int x, int y, t_vars *params)
 {
 	if (button == 4)
 	{
-		params->scale *= 2;
+		params->moveviewx = 0;
+		params->moveviewx = 0;
+		params->scale *= 1.05;
 		pixel_setter(params);
 		mlx_put_image_to_window(params->mlx, params->win,
 			params->img_data->img, 0, 0);
 	}
 	if (button == 5)
 	{
-		params->scale /= 2;
+		params->moveviewx = 0;
+		params->moveviewx = 0;
+		params->scale /= 1.05;
 		pixel_setter(params);
 		mlx_put_image_to_window(params->mlx, params->win,
 			params->img_data->img, 0, 0);
