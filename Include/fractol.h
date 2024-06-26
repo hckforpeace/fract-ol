@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:13:49 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 19:34:55 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/26 01:27:37 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct	s_vars {
 	int			moveviewy;
 	double		scale;
 	int			color;
+	int			dragx;
+	int			dragy;
 }	t_vars;
 
 
@@ -98,6 +100,14 @@ void	fexit_data(t_vars *vars);
 //zoom
 
 void	apply_action(t_vars *vars, int	keycode);
+
+// dragon curve
+
+char	drawline(t_vars *data, int x, int y, char c);
+void	ft_swap(char *str);
+void	ft_strrplc(char *str);
+char	*get_dragon(int i, char *str);
+void	dragon_curve(t_vars *data);
 
 
 #endif

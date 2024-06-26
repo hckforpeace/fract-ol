@@ -1,5 +1,5 @@
 SRC= main.c	hooks.c colors_bitshift.c fractol.c utils.c pixels.c display_action.c
-BONUS= main_bonus.c hooks_bonus.c colors_bitshift.c fractol_bonus.c utils.c pixels.c display_action.c
+BONUS= main_bonus.c hooks_bonus.c colors_bitshift.c fractol_bonus.c utils.c pixels.c display_action.c dragoncrv.c 
 OBJ= $(addprefix src/,$(SRC:.c=.o))
 OBJ_BONUS= $(addprefix src/,$(BONUS:.c=.o))
 NAME= fract-ol
@@ -8,8 +8,7 @@ NAME= fract-ol
 all: $(NAME)
 
 bonus: $(OBJ_BONUS)
-	make -C libft
-	$(CC) $(OBJ_BONUS) -Lmlx_linux -lmlx_Linux -L/usr/lib -lft -L./libft -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $^ -Lmlx_linux -lmlx_Linux -L/usr/lib -lft -L./libft -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft

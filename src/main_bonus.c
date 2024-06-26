@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:10:42 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 18:36:43 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/26 01:26:15 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 {
 	if (argc == 2 && !ft_strcmp(argv[1], "Mandelbrot"))
 		jober(argv[1], 0, 0);
+	else if (argc == 2 && !ft_strcmp("Dragon", argv[1]))
+		jober(argv[1], 0, 0);
 	else if (argc == 4 && !ft_strcmp(argv[1], "Julia"))
 		jober("Julia", ft_atof(argv[2]), ft_atof(argv[3]));
 	else
@@ -44,7 +46,11 @@ int	jober(char	*frctl, double x, double y)
 	data->frctl->cy = y;
 	data->moveviewx = 0;
 	data->moveviewy = 0;
-	if (pixel_setter(data) < 0)
+	data->dragx = data->win_x / 2;
+	data->dragy = data->win_y / 2;
+	if (!ft_strcmp("Dragon", frctl))
+		dragon_curve(data);
+	else if (pixel_setter(data) < 0)
 		free_vars(data, 1);
 	mlx_put_image_to_window(data->mlx, data->win, data->img_data->img, 0, 0);
 	set_hooks(data);
