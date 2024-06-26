@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 14:12:24 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/25 22:44:37 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:43:37 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ void	fexit_data(t_vars *vars)
 
 void	flip(char *str)
 {
-	int	strlen;
-	int	i;
+	int		strlen;
+	int		i;
 	char	temp;
+
 	if (!str)
 		return ;
 	if (!ft_strcmp(str, ""))
@@ -73,4 +74,9 @@ void	flip(char *str)
 		str[strlen - 1] = temp;
 		i++;
 	}	
+}
+
+double	get_module(double x, double y)
+{
+	return (sqrt(pow(x, 2) + pow(y, 2)));
 }

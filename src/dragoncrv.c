@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   dragoncrv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:14:29 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 13:34:50 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:41:09 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-char drawline(t_vars *data, int x, int y, char c)
+char	drawline(t_vars *data, int x, int y, char c)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (i <= 1)
@@ -36,11 +36,13 @@ char drawline(t_vars *data, int x, int y, char c)
 		data->dragx = x;
 	return (c);
 }
+
 void	ft_swap(char *str)
 {
-	int	strlen;
-	int	i;
+	int		strlen;
+	int		i;
 	char	temp;
+
 	if (!str)
 		return ;
 	if (!ft_strcmp(str, ""))
@@ -55,6 +57,7 @@ void	ft_swap(char *str)
 		i++;
 	}	
 }
+
 void	ft_strrplc(char *str)
 {
 	int	i;
@@ -74,8 +77,8 @@ void	ft_strrplc(char *str)
 
 char	*get_dragon(int i, char *str)
 {
-	char *temp;
-	char *temp2;
+	char	*temp;
+	char	*temp2;
 
 	if (i == 0)
 		return (str);
@@ -87,6 +90,30 @@ char	*get_dragon(int i, char *str)
 		temp2 = ft_strjoin(temp, str);
 		free(str);
 		free(temp);
-		get_dragon(i - 1, temp2);
+		return (get_dragon(i - 1, temp2));
 	}
+}
+
+char	display_case(char previous, char instruction, t_vars *data)
+{
+	if (instruction == 'R')
+	{
+		if (previous == 'D')
+			return (drawline(data, data->dragx, data->dragy, 'L'));
+		else if (previous == 'U')
+			return (drawline(data, data->dragx, data->dragy, 'R'));
+		else if (previous == 'L')
+			return (drawline(data, data->dragx, data->dragy, 'U'));
+		else if (previous == 'R')
+			return (drawline(data, data->dragx, data->dragy, 'D'));
+	}
+	if (previous == 'D')
+		return (drawline(data, data->dragx, data->dragy, 'R'));
+	else if (previous == 'U')
+		return (drawline(data, data->dragx, data->dragy, 'L'));
+	else if (previous == 'L')
+		return (drawline(data, data->dragx, data->dragy, 'D'));
+	else if (previous == 'R')
+		return (drawline(data, data->dragx, data->dragy, 'U'));
+	return ('D');
 }

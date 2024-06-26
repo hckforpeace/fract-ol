@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:13:49 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 01:27:37 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/26 19:26:26 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct	s_vars {
 	int			color;
 	int			dragx;
 	int			dragy;
+	int			xorg;
+	int			yorg;
 }	t_vars;
 
 
@@ -108,6 +110,8 @@ void	ft_swap(char *str);
 void	ft_strrplc(char *str);
 char	*get_dragon(int i, char *str);
 void	dragon_curve(t_vars *data);
-
+char	display_case(char previous, char instruction, t_vars *data);
+int		burning_ship(t_vars *data, int *loops);
+long	get_abs(long l);
 
 #endif

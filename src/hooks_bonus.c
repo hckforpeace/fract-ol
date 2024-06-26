@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:11:47 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/25 22:15:42 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/26 19:16:00 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 int	key_events(int keycode, t_vars *params)
 {
-	if (keycode == XK_Escape || keycode == XK_r || keycode == XK_a
+	if ((keycode == XK_Escape || keycode == XK_r || keycode == XK_a
 		|| keycode == XK_s || keycode == XK_c
 		|| keycode == XK_Left || keycode == XK_Right || keycode == XK_g
-		|| keycode == XK_b || keycode == XK_Down || keycode == XK_Up)
+		|| keycode == XK_b || keycode == XK_Down || keycode == XK_Up) && ft_strcmp(params->frc_name, "Dragon") != 0)
+		apply_action(params, keycode);
+	else if (keycode == XK_Escape)
 		apply_action(params, keycode);
 	return (1);
 }
 
 int	mousemoves(int button, int x, int y, t_vars *params)
 {
+	int new_width = params->win_x * params->scale;
+	int new_height = params->win_y * params->scale;
+	int left = x - (new_width / 2);
+	int top = y - (new_height / 2);
 	if (button == 4)
 	{
 		params->scale *= 1.05;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:41:05 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 02:41:54 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/26 19:24:35 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,39 @@ int	getnextfract(t_vars *data, int	*loops)
 {
 	if (!ft_strcmp(data->frc_name, "Mandelbrot"))
 		return (mandelbrot(data, loops));
+	else if (!ft_strcmp(data->frc_name, "BS"))
+		return (burning_ship(data, loops));
 	else
 		return (julia(data, loops));
+}
+
+int	burning_ship(t_vars *data, int *loops)
+{
+	double	zx;
+	double	zy;
+	double	temp_zx;
+	double	temp_zy;
+	double	i;
+
+	zx = 0;
+	zy = 0;
+	i = 0;
+	while (i < data->precision)
+	{
+		temp_zx = fabs(zx);
+		temp_zy = fabs(zy);
+		zx = pow(temp_zx, 2) - pow(temp_zy, 2);
+		zy = (-2 * temp_zx * temp_zy);
+		if (get_module((zx + data->frctl->x), (zy + data->frctl->y)) > 4)
+		{
+			*loops = i;
+			return (0);
+		}
+		zx = zx + data->frctl->x;
+		zy = zy + data->frctl->y;
+		i++;
+	}
+	return (1);
 }
 
 int	julia(t_vars *data, int *loops)
@@ -117,37 +148,12 @@ void	dragon_curve(t_vars *data)
 	instr = get_dragon(20, fst);
 	c = 'D';
 	drawline(data, data->dragx, data->dragy, 'D');
-	while (instr[i] && data->dragx < data->win_x && data->dragx > 0 && data->dragy < data->win_y && data->dragy > 0)
+	while (instr[i] && data->dragx < data->win_x && data->dragx > 0
+		&& data->dragy < data->win_y && data->dragy > 0)
 	{
-		fprintf(stderr, "%c\n", c);
-		if (instr[i] == 'R')
-		{
-			if (c == 'D')
-				c = drawline(data, data->dragx, data->dragy, 'L');
-			else if (c == 'U')
-				c = drawline(data, data->dragx, data->dragy, 'R');
-			else if (c == 'L')
-				c = drawline(data, data->dragx, data->dragy, 'U');
-			else if (c == 'R')
-				c = drawline(data, data->dragx, data->dragy, 'D');
-		}
-		else if (instr[i] == 'L')
-		{
-			if (c == 'D')
-				c = drawline(data, data->dragx, data->dragy, 'R');
-			else if (c == 'U')
-				c = drawline(data, data->dragx, data->dragy, 'L');
-			else if (c == 'L')
-				c = drawline(data, data->dragx, data->dragy, 'D');
-			else if (c == 'R')
-				c = drawline(data, data->dragx, data->dragy, 'U');
-		}
+		c = display_case(c, instr[i], data);
 		i++;
 	}
-	my_mlx_pixel_put(data->img_data, data->win_x / 2 , data->win_y / 2, 0x00FF0000);
-}
-
-double	get_module(double x, double y)
-{
-	return (sqrt(pow(x, 2) + pow(y, 2)));
+	my_mlx_pixel_put(data->img_data, data->win_x / 2,
+		data->win_y / 2, 0x00FF0000);
 }
