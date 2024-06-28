@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:53:32 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 19:28:15 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:05:36 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	mousemoves(int button, int x, int y, t_vars *params)
 	return (1);
 }
 
-int	close_page(void *params)
+static int	close_page(void *params)
 {
 	ft_printf("Program terminated\n");
 	free_vars(params, 0);

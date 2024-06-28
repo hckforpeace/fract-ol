@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dragoncrv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:14:29 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 15:41:09 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:54:03 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_swap(char *str)
 		str[i] = str[strlen - i - 1];
 		str[strlen - 1 - i] = temp;
 		i++;
-	}	
+	}
 }
 
 void	ft_strrplc(char *str)

@@ -6,7 +6,7 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:24:41 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/21 15:42:59 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/28 11:01:01 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int		get_total_length(t_list *lst);
 int		ft_setter(char *buffer);
 
 //  math
-int	ft_pow(int i, int pow);
+int		ft_pow(int i, int pow);
 double	ft_atof(const char *string);
 
 #endif

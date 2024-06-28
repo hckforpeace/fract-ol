@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 14:12:24 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 15:43:37 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:58:09 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,6 @@ void	fexit_data(t_vars *vars)
 		free(vars);
 		exit(1);
 	}
-}
-
-void	flip(char *str)
-{
-	int		strlen;
-	int		i;
-	char	temp;
-
-	if (!str)
-		return ;
-	if (!ft_strcmp(str, ""))
-		return ;
-	strlen = ft_strlen(str);
-	i = 0;
-	while (i < strlen / 2)
-	{
-		temp = str[i];
-		str[i] = str[strlen - 1];
-		str[strlen - 1] = temp;
-		i++;
-	}	
 }
 
 double	get_module(double x, double y)

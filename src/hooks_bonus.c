@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:11:47 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 19:16:00 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:03:37 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 int	key_events(int keycode, t_vars *params)
 {
 	if ((keycode == XK_Escape || keycode == XK_r || keycode == XK_a
-		|| keycode == XK_s || keycode == XK_c
-		|| keycode == XK_Left || keycode == XK_Right || keycode == XK_g
-		|| keycode == XK_b || keycode == XK_Down || keycode == XK_Up) && ft_strcmp(params->frc_name, "Dragon") != 0)
+			|| keycode == XK_s || keycode == XK_c || keycode == XK_Left
+			|| keycode == XK_Right || keycode == XK_g || keycode == XK_b
+			|| keycode == XK_Down || keycode == XK_Up)
+		&& (ft_strcmp(params->frc_name, "Dragon") != 0))
 		apply_action(params, keycode);
 	else if (keycode == XK_Escape)
 		apply_action(params, keycode);
@@ -26,28 +27,17 @@ int	key_events(int keycode, t_vars *params)
 
 int	mousemoves(int button, int x, int y, t_vars *params)
 {
-	int new_width = params->win_x * params->scale;
-	int new_height = params->win_y * params->scale;
-	int left = x - (new_width / 2);
-	int top = y - (new_height / 2);
 	if (button == 4)
-	{
-		params->scale *= 1.05;
-		pixel_setter(params);
-		mlx_put_image_to_window(params->mlx, params->win,
-			params->img_data->img, 0, 0);
-	}
-	if (button == 5)
-	{
-		params->scale /= 1.05;
-		pixel_setter(params);
-		mlx_put_image_to_window(params->mlx, params->win,
-			params->img_data->img, 0, 0);
-	}
+		params->scale *= 1.5;
+	else if (button == 5)
+		params->scale /= 1.5;
+	pixel_setter(params);
+	mlx_put_image_to_window(params->mlx, params->win,
+		params->img_data->img, 0, 0);
 	return (1);
 }
 
-int	close_page(void *params)
+static int	close_page(void *params)
 {
 	free_vars(params, 0);
 	return (0);
@@ -58,4 +48,31 @@ void	set_hooks(t_vars *data)
 	mlx_mouse_hook(data->win, mousemoves, data);
 	mlx_hook(data->win, 17, 0, close_page, data);
 	mlx_key_hook(data->win, key_events, data);
+}
+
+void	dragon_curve(t_vars *data)
+{
+	char	*instr;
+	char	*fst;
+	int		i;
+	char	c;
+
+	data->dragx = data->win_x / 2;
+	data->dragy = data->win_y / 2;
+	i = 1;
+	fst = (char *)malloc(sizeof(char) * 2);
+	fst[0] = 'R';
+	fst[1] = 0;
+	instr = get_dragon(20, fst);
+	c = 'D';
+	drawline(data, data->dragx, data->dragy, 'D');
+	while (instr[i] && data->dragx < data->win_x && data->dragx > 0
+		&& data->dragy < data->win_y && data->dragy > 0)
+	{
+		c = display_case(c, instr[i], data);
+		i++;
+	}
+	free(instr);
+	my_mlx_pixel_put(data->img_data, data->win_x / 2,
+		data->win_y / 2, 0x00FF0000);
 }

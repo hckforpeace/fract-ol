@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:41:05 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 18:49:48 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:08:33 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,4 @@ int	mandelbrot(t_vars *data, int *loops)
 		i++;
 	}
 	return (1);
-}
-
-double	get_module(double x, double y)
-{
-	return (sqrt(pow(x, 2) + pow(y, 2)));
 }

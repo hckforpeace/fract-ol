@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:41:05 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 19:24:35 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:53:48 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,30 +130,4 @@ int	mandelbrot(t_vars *data, int *loops)
 		i++;
 	}
 	return (1);
-}
-
-void	dragon_curve(t_vars *data)
-{
-	char	*instr;
-	char	*fst;
-	int		i;
-	char	c;
-
-	data->dragx = data->win_x / 2;
-	data->dragy = data->win_y / 2;
-	i = 1;
-	fst = (char *)malloc(sizeof(char) * 2);
-	fst[0] = 'R';
-	fst[1] = 0;
-	instr = get_dragon(20, fst);
-	c = 'D';
-	drawline(data, data->dragx, data->dragy, 'D');
-	while (instr[i] && data->dragx < data->win_x && data->dragx > 0
-		&& data->dragy < data->win_y && data->dragy > 0)
-	{
-		c = display_case(c, instr[i], data);
-		i++;
-	}
-	my_mlx_pixel_put(data->img_data, data->win_x / 2,
-		data->win_y / 2, 0x00FF0000);
 }

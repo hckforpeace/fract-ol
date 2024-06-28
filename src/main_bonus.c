@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:10:42 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 19:23:46 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:54:43 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	jober(char	*frctl, double x, double y)
 		dragon_curve(data);
 	else if (pixel_setter(data) < 0)
 		free_vars(data, 1);
-	mlx_put_image_to_window(data->mlx, data->win, data->img_data->img, data->xorg, data->yorg);
+	mlx_put_image_to_window(data->mlx, data->win, data->img_data->img,
+		data->xorg, data->yorg);
 	set_hooks(data);
 	mlx_loop(data->mlx);
 	return (0);

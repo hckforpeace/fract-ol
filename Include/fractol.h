@@ -3,44 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:13:49 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/26 19:26:26 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/28 13:01:07 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define ESC 65307
-# define ON_MOUSEMOVE 6
-#include <math.h>
-#include <mlx.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
-#include "libft.h"
 
-typedef struct	s_data {
+# include <math.h>
+# include <mlx.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include "libft.h"
+
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_data;
+}				t_data;
 
-typedef struct	s_fractal {
+typedef struct s_fractal
+{
 	double	x;
 	double	y;
 	double	cx;
 	double	cy;
 }	t_fractal;
 
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-	t_data	*img_data;
+typedef struct s_vars
+{
+	void		*mlx;
+	void		*win;
+	t_data		*img_data;
 	double		win_x;
 	double		win_y;
 	t_fractal	*frctl;
@@ -56,62 +58,50 @@ typedef struct	s_vars {
 	int			yorg;
 }	t_vars;
 
-
-
-typedef	struct s_tend 
-{
-	int 	diverges;
-	float	behaviour;
-	int	cx;
-	int	cy;
-}	t_tend;
-
-void	display_info(int status);
+/* main and main_bonus */
 int		jober(char	*frctl, double x, double y);
-
-/* main */
+t_vars	*init_vars(int size_x, int size_y, char *win_name, char *frct);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/* hooks.c and hooks_bonus.c */
 int		key_events(int keycode, t_vars *params);
 int		mousemoves(int button, int x, int y, t_vars *params);
 int		close_wincross(void *params);
-void	set_bckclr(t_data *data, int dimx, int dimy, int color);
-t_vars	*init_vars(int size_x, int size_y, char *win_name, char *frct);
 void	set_hooks(t_vars *data);
+void	dragon_curve(t_vars *data);
 
-int	julia(t_vars *data, int	*loops);
-
-int	pixel_setter(t_vars *data);
-int	setbase(t_vars *data, double x, double y);
-int	mandelbrot(t_vars *data, int *loops);
-double	get_module(double x, double y);
+/* utils.c */
+void	display_info(int status);
 void	free_vars(t_vars *vars, int status);
-int	getnextfract(t_vars *data, int	*loops);
+void	fexit_data(t_vars *vars);
+double	get_module(double x, double y);
+
+/* fractol.c fractol_bonus.c */
+int		setbase(t_vars *data, double x, double y);
+int		getnextfract(t_vars *data, int	*loops);
+int		julia(t_vars *data, int	*loops);
+int		mandelbrot(t_vars *data, int *loops);
+int		burning_ship(t_vars *data, int *loops);
+int		pixel_setter(t_vars *data);
 
 /* colors_bitshift */
-int	create_trgb(int t, int r, int g, int b);
-int	get_t(int trgb);
-int	get_r(int trgb);
-int	get_g(int trgb);
-int	get_b(int trgb);
-int	add_shade(float shade, int color);
-int	invert(int	color);
-int	create_trgb(int t, int r, int g, int b);
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
+int		invert(int color);
+int		create_trgb(int t, int r, int g, int b);
+int		add_shade(float shade, int color);
+int		create_trgb(int t, int r, int g, int b);
 
-void	fexit_data(t_vars *vars);
+/* display_action.c */
+void	apply_action(t_vars *vars, int keycode);
 
-//zoom
-
-void	apply_action(t_vars *vars, int	keycode);
-
-// dragon curve
-
+/* dragoncrv.c */
 char	drawline(t_vars *data, int x, int y, char c);
 void	ft_swap(char *str);
 void	ft_strrplc(char *str);
 char	*get_dragon(int i, char *str);
-void	dragon_curve(t_vars *data);
 char	display_case(char previous, char instruction, t_vars *data);
-int		burning_ship(t_vars *data, int *loops);
-long	get_abs(long l);
 
 #endif
