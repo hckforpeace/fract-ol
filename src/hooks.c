@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:53:32 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 11:05:36 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/28 13:11:24 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	key_events(int keycode, t_vars *params)
 {
 	if (keycode == XK_Escape || keycode == XK_a || keycode == XK_s)
 		apply_action(params, keycode);
-	fprintf(stderr, "key: %d\n", keycode);
 	return (1);
 }
 

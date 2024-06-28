@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 14:12:24 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 12:58:09 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/28 13:51:10 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,18 @@ void	display_info(int status)
 {
 	if (status == 0)
 	{
+		ft_printf("*****       Mandatory        *****\n\n");
 		ft_printf("Input error, available commands:\n");
-		ft_printf("./fractol Mandelbrot\n");
-		ft_printf("./fractol Julia float-x floaty-y\n");
+		ft_printf("./fract-ol Mandelbrot\n");
+		ft_printf("./fract-ol Julia float-x floaty-y\n\n\n");
+		ft_printf("*****       	Bonus           *****\n\n");
+		ft_printf("./fract-ol-bonus BS\n");
+		ft_printf("./fract-ol-bonus Dragon\n");
+		ft_printf("   c   => change colors randomly\n");
+		ft_printf("   r   => change main color to red\n");
+		ft_printf("   g   => change main color to green\n");
+		ft_printf("   b   => change main color to blue\n");
+		ft_printf("arrows => to move view change view\n");
 	}
 	else if (status == 1)
 		ft_putstr_fd("*** malloc faild !***\n", 2);
