@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:11:47 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 13:03:37 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/29 18:34:03 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,77 @@ int	key_events(int keycode, t_vars *params)
 
 int	mousemoves(int button, int x, int y, t_vars *params)
 {
+	double	xz;
+	double	yz;
+	double	xb;
+	double	yb;
+	int		offsetx;
+	int		offsety;
+	xb = ((x + params->moveviewx) - (params->win_x / 2)) * params->scale;
+	yb = ((params->win_y / 2) - (y + params->moveviewy)) * params->scale;
 	if (button == 4)
+	{
+		// ZOOM OUT
 		params->scale *= 1.5;
+		xz = ((x + params->moveviewx) - (params->win_x / 2)) * params->scale;
+		yz = ((params->win_y / 2) - (y + params->moveviewy)) * params->scale;
+		offsetx = (int)((xb - xz) / params->scale);
+		offsety = (int)((yb - yz) / params->scale);
+		params->moveviewx += offsetx;
+		params->moveviewy -= offsety; 
+	}
 	else if (button == 5)
+	{
+		// ZOOM IN
 		params->scale /= 1.5;
+		xz = ((x + params->moveviewx) - (params->win_x / 2)) * params->scale;
+		yz = ((params->win_y / 2) - (y + params->moveviewy)) * params->scale;
+		offsetx = (int)((xb - xz) / params->scale);
+		offsety = (int)((yb - yz) / params->scale);
+		params->moveviewx += offsetx;
+		params->moveviewy -= offsety;
+	}
 	pixel_setter(params);
 	mlx_put_image_to_window(params->mlx, params->win,
-		params->img_data->img, 0, 0);
+		params->img_data->img, 0, 0); 
 	return (1);
 }
+/* int	mousemoves(int button, int x, int y, t_vars *params)
+{
+    double x_centered;
+    double y_centered;
+    double new_scale;
+    double zoom_factor;
+
+    zoom_factor = 1.5;
+
+    // Center the coordinates relative to the middle of the window
+    x_centered = (x + params->moveviewx) - (params->win_x / 2);
+    y_centered = (params->win_y / 2) - (y + params->moveviewy);
+
+    if (button == 4) // ZOOM OUT
+    {
+        new_scale = params->scale / zoom_factor;
+        params->moveviewx += (x_centered * (new_scale - params->scale));
+        params->moveviewy += (y_centered * (new_scale - params->scale));
+        params->scale = new_scale;
+        printf("ZOOM OUT x: %d, y: %d, x_centered: %f, y_centered: %f\n", x, y, x_centered, y_centered);
+    }
+    else if (button == 5) // ZOOM IN
+    {
+        new_scale = params->scale * zoom_factor;
+        params->moveviewx += (x_centered * (new_scale - params->scale));
+        params->moveviewy += (y_centered * (new_scale - params->scale));
+        params->scale = new_scale;
+        printf("ZOOM IN x: %d, y: %d, x_centered: %f, y_centered: %f\n", x, y, x_centered, y_centered);
+    }
+
+    pixel_setter(params);
+    mlx_put_image_to_window(params->mlx, params->win, params->img_data->img, 0, 0);
+    return (1);
+} */
+
+
 
 static int	close_page(void *params)
 {
