@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 14:12:24 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 13:51:10 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:15:52 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ void	display_info(int status)
 {
 	if (status == 0)
 	{
+		ft_printf("*****         GLOBAL         *****\n\n");
+		ft_printf("   a   => decrement definition\n");
+		ft_printf("   s   => Increment definition\n\n");
 		ft_printf("*****       Mandatory        *****\n\n");
 		ft_printf("Input error, available commands:\n");
 		ft_printf("./fract-ol Mandelbrot\n");
 		ft_printf("./fract-ol Julia float-x floaty-y\n\n\n");
-		ft_printf("*****       	Bonus           *****\n\n");
+		ft_printf("*****       	Bonus        *****\n\n");
 		ft_printf("./fract-ol-bonus BS\n");
 		ft_printf("./fract-ol-bonus Dragon\n");
 		ft_printf("   c   => change colors randomly\n");

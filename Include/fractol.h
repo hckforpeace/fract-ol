@@ -6,7 +6,7 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:13:49 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 13:01:07 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/29 23:57:52 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_vars
 	int			dragy;
 	int			xorg;
 	int			yorg;
+	int			zoom_times;
 }	t_vars;
 
 /* main and main_bonus */
@@ -82,7 +83,6 @@ int		getnextfract(t_vars *data, int	*loops);
 int		julia(t_vars *data, int	*loops);
 int		mandelbrot(t_vars *data, int *loops);
 int		burning_ship(t_vars *data, int *loops);
-int		pixel_setter(t_vars *data);
 
 /* colors_bitshift */
 int		get_t(int trgb);
@@ -90,12 +90,10 @@ int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
 int		invert(int color);
-int		create_trgb(int t, int r, int g, int b);
-int		add_shade(float shade, int color);
-int		create_trgb(int t, int r, int g, int b);
 
 /* display_action.c */
 void	apply_action(t_vars *vars, int keycode);
+void	zoom_in_mouse(double offsetx, double offsety, t_vars *params);
 
 /* dragoncrv.c */
 char	drawline(t_vars *data, int x, int y, char c);
@@ -103,5 +101,12 @@ void	ft_swap(char *str);
 void	ft_strrplc(char *str);
 char	*get_dragon(int i, char *str);
 char	display_case(char previous, char instruction, t_vars *data);
+
+/* pixels.c */
+int		pixel_setter(t_vars *data);
+int		create_trgb(int t, int r, int g, int b);
+int		add_shade(float shade, int color);
+int		get_offsetx(int x, double xb, t_vars *params);
+int		get_offsety(int y, double yb, t_vars *params);
 
 #endif

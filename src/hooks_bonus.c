@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:11:47 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/29 18:34:03 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:19:51 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,77 +27,30 @@ int	key_events(int keycode, t_vars *params)
 
 int	mousemoves(int button, int x, int y, t_vars *params)
 {
-	double	xz;
-	double	yz;
 	double	xb;
 	double	yb;
 	int		offsetx;
 	int		offsety;
+
 	xb = ((x + params->moveviewx) - (params->win_x / 2)) * params->scale;
 	yb = ((params->win_y / 2) - (y + params->moveviewy)) * params->scale;
-	if (button == 4)
+	if (button == 5)
 	{
-		// ZOOM OUT
 		params->scale *= 1.5;
-		xz = ((x + params->moveviewx) - (params->win_x / 2)) * params->scale;
-		yz = ((params->win_y / 2) - (y + params->moveviewy)) * params->scale;
-		offsetx = (int)((xb - xz) / params->scale);
-		offsety = (int)((yb - yz) / params->scale);
-		params->moveviewx += offsetx;
-		params->moveviewy -= offsety; 
+		offsetx = get_offsetx(x, xb, params);
+		offsety = get_offsety(y, yb, params);
+		zoom_in_mouse(offsetx, offsety, params);
 	}
-	else if (button == 5)
+	else if (button == 4 && params->zoom_times < 35)
 	{
-		// ZOOM IN
 		params->scale /= 1.5;
-		xz = ((x + params->moveviewx) - (params->win_x / 2)) * params->scale;
-		yz = ((params->win_y / 2) - (y + params->moveviewy)) * params->scale;
-		offsetx = (int)((xb - xz) / params->scale);
-		offsety = (int)((yb - yz) / params->scale);
-		params->moveviewx += offsetx;
-		params->moveviewy -= offsety;
+		offsetx = get_offsetx(x, xb, params);
+		offsety = get_offsety(y, yb, params);
+		zoom_in_mouse(offsetx, offsety, params);
 	}
-	pixel_setter(params);
-	mlx_put_image_to_window(params->mlx, params->win,
-		params->img_data->img, 0, 0); 
+	printf("count zoom\n");
 	return (1);
 }
-/* int	mousemoves(int button, int x, int y, t_vars *params)
-{
-    double x_centered;
-    double y_centered;
-    double new_scale;
-    double zoom_factor;
-
-    zoom_factor = 1.5;
-
-    // Center the coordinates relative to the middle of the window
-    x_centered = (x + params->moveviewx) - (params->win_x / 2);
-    y_centered = (params->win_y / 2) - (y + params->moveviewy);
-
-    if (button == 4) // ZOOM OUT
-    {
-        new_scale = params->scale / zoom_factor;
-        params->moveviewx += (x_centered * (new_scale - params->scale));
-        params->moveviewy += (y_centered * (new_scale - params->scale));
-        params->scale = new_scale;
-        printf("ZOOM OUT x: %d, y: %d, x_centered: %f, y_centered: %f\n", x, y, x_centered, y_centered);
-    }
-    else if (button == 5) // ZOOM IN
-    {
-        new_scale = params->scale * zoom_factor;
-        params->moveviewx += (x_centered * (new_scale - params->scale));
-        params->moveviewy += (y_centered * (new_scale - params->scale));
-        params->scale = new_scale;
-        printf("ZOOM IN x: %d, y: %d, x_centered: %f, y_centered: %f\n", x, y, x_centered, y_centered);
-    }
-
-    pixel_setter(params);
-    mlx_put_image_to_window(params->mlx, params->win, params->img_data->img, 0, 0);
-    return (1);
-} */
-
-
 
 static int	close_page(void *params)
 {
@@ -107,7 +60,8 @@ static int	close_page(void *params)
 
 void	set_hooks(t_vars *data)
 {
-	mlx_mouse_hook(data->win, mousemoves, data);
+	if (ft_strcmp(data->frc_name, "Dragon"))
+		mlx_mouse_hook(data->win, mousemoves, data);
 	mlx_hook(data->win, 17, 0, close_page, data);
 	mlx_key_hook(data->win, key_events, data);
 }

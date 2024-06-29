@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:53:32 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 13:11:24 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:06:36 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,15 @@ int	key_events(int keycode, t_vars *params)
 
 int	mousemoves(int button, int x, int y, t_vars *params)
 {
-	if (button == 4)
-	{
-		params->moveviewx = 0;
-		params->moveviewx = 0;
-		params->scale *= 1.05;
-		pixel_setter(params);
-		mlx_put_image_to_window(params->mlx, params->win,
-			params->img_data->img, 0, 0);
-	}
 	if (button == 5)
 	{
-		params->moveviewx = 0;
-		params->moveviewx = 0;
-		params->scale /= 1.05;
-		pixel_setter(params);
-		mlx_put_image_to_window(params->mlx, params->win,
-			params->img_data->img, 0, 0);
+		params->scale *= 1.1;
+		zoom_in_mouse(0.0, 0.0, params);
+	}
+	if (button == 4 && params->zoom_times < 35)
+	{
+		params->scale /= 1.1;
+		zoom_in_mouse(0.0, 0.0, params);
 	}
 	return (1);
 }

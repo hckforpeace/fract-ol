@@ -6,7 +6,7 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:10:42 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 10:54:43 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/29 23:58:12 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ t_vars	*init_vars(int size_x, int size_y, char *win_name, char *frct)
 	data->win_x = size_x;
 	data->win_y = size_y;
 	data->frc_name = frct;
+	data->zoom_times = 0;
 	return (data);
 }
 

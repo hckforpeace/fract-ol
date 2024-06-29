@@ -6,7 +6,7 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:14:29 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/28 10:54:03 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/30 00:21:17 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	drawline(t_vars *data, int x, int y, char c)
 	int	i;
 
 	i = 1;
-	while (i <= 1)
+	while (i <= 10)
 	{
 		if (c == 'U')
 			y--;

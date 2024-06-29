@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_action.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:20:08 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/24 19:36:30 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/29 23:58:51 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,14 @@ void	apply_action(t_vars *vars, int keycode)
 		vars->color = 0x00FF0000;
 	pixel_setter(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img_data->img, 0, 0);
+}
+
+void	zoom_in_mouse(double offsetx, double offsety, t_vars *params)
+{
+	params->moveviewx += offsetx;
+	params->moveviewy -= offsety;
+	params->zoom_times++;
+	pixel_setter(params);
+	mlx_put_image_to_window(params->mlx, params->win,
+		params->img_data->img, 0, 0);
 }
