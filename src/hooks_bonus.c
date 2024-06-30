@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:11:47 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 00:19:51 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/30 14:45:24 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	mousemoves(int button, int x, int y, t_vars *params)
 		offsety = get_offsety(y, yb, params);
 		zoom_in_mouse(offsetx, offsety, params);
 	}
-	printf("count zoom\n");
 	return (1);
 }
 

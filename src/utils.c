@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 14:12:24 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 00:15:52 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/30 17:00:51 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,32 @@ void	fexit_data(t_vars *vars)
 double	get_module(double x, double y)
 {
 	return (sqrt(pow(x, 2) + pow(y, 2)));
+}
+
+int	is_double(char *number)
+{
+	if (!(*number))
+		return (0);
+	if (*number == '-')
+		number++;
+	while (*number && *number != '.')
+	{
+		if (!ft_isdigit(*number))
+			return (0);
+		number++;
+	}
+	if (!*number)
+		return (1);
+	if (*number != '.')
+		return (0);
+	number++;
+	if (!(*number))
+		return (0);
+	while (*number)
+	{
+		if (!ft_isdigit(*number))
+			return (0);
+		number++;
+	}
+	return (1);
 }

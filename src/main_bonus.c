@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:10:42 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/29 23:58:12 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/30 14:48:24 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 int	main(int argc, char **argv)
 {
+	display_info(0);
 	if (argc == 2 && !ft_strcmp(argv[1], "Mandelbrot"))
 		jober(argv[1], 0, 0);
 	else if (argc == 2 && !ft_strcmp("Dragon", argv[1]))
@@ -33,9 +34,12 @@ int	main(int argc, char **argv)
 	else if (argc == 2 && !ft_strcmp("BS", argv[1]))
 		jober(argv[1], 0, 0);
 	else if (argc == 4 && !ft_strcmp(argv[1], "Julia"))
-		jober("Julia", ft_atof(argv[2]), ft_atof(argv[3]));
-	else
-		display_info(0);
+	{
+		if (!is_double(argv[2]) || !is_double(argv[3]))
+			ft_printf("\n\n****   wrong double parameters   ****\n\n");
+		else
+			jober("Julia", ft_atof(argv[2]), ft_atof(argv[3]));
+	}
 	return (0);
 }
 

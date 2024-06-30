@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/15 20:13:49 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/29 23:57:52 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/30 15:00:56 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	display_info(int status);
 void	free_vars(t_vars *vars, int status);
 void	fexit_data(t_vars *vars);
 double	get_module(double x, double y);
+int		is_double(char *number);
 
 /* fractol.c fractol_bonus.c */
 int		setbase(t_vars *data, double x, double y);

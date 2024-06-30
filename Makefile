@@ -4,7 +4,7 @@ OBJ= $(addprefix src/,$(SRC:.c=.o))
 OBJ_BONUS= $(addprefix src/,$(BONUS:.c=.o))
 NAME= fract-ol
 NAME_BONUS= fract-ol-bonus
-# CFLAGS= -Wall -Wextra -Werror
+CFLAGS= -Wall -Wextra -Werror
 
 all: $(NAME)
 

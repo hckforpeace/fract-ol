@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:53:32 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 00:06:36 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/30 15:01:36 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	key_events(int keycode, t_vars *params)
 
 int	mousemoves(int button, int x, int y, t_vars *params)
 {
+	x++;
+	y++;
 	if (button == 5)
 	{
 		params->scale *= 1.1;
