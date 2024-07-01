@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:10:42 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 14:48:24 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/30 23:03:21 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	jober(char	*frctl, double x, double y)
 {
 	t_vars	*data;
 
-	data = init_vars(1920.0, 1080.0, "FRACTOL", frctl);
+	data = init_vars(WIDTH, HEIGHT, "FRACTOL", frctl);
 	data->frctl->cx = x;
 	data->frctl->cy = y;
 	data->moveviewx = 0;

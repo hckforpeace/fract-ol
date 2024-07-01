@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 23:46:11 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 14:47:53 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/06/30 23:03:04 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	jober(char	*frctl, double x, double y)
 {
 	t_vars	*data;
 
-	data = init_vars(1920.0, 1080.0, "FRACTOL", frctl);
+	data = init_vars(WIDTH, HEIGHT, "FRACTOL", frctl);
 	data->frctl->cx = x;
 	data->frctl->cy = y;
 	if (pixel_setter(data) < 0)

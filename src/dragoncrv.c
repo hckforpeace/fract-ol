@@ -6,7 +6,7 @@
 /*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 23:14:29 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 00:21:17 by pierre           ###   ########.fr       */
+/*   Updated: 2024/06/30 22:57:36 by pierre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ void	ft_swap(char *str)
 
 void	ft_strrplc(char *str)
 {
-	int	i;
-
-	i = 0;
 	if (!str)
 		return ;
 	while (*str)
