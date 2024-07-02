@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre <pierre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:10:42 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 23:03:21 by pierre           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:23:34 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_vars	*init_vars(int size_x, int size_y, char *win_name, char *frct)
 	if (!data->img_data)
 		fexit_data(data);
 	data->precision = 250;
-	data->scale = 1.0 / 350.0;
+	data->scale = (1.0 / 350.0) * (2073600.0 / (WIDTH * HEIGHT));
 	data->color = 0x00FF0000;
 	data->frctl = (struct s_fractal *)malloc(sizeof(struct s_fractal));
 	if (!data->frctl)

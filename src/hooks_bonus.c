@@ -6,7 +6,7 @@
 /*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 01:11:47 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 14:45:24 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:29:54 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int	mousemoves(int button, int x, int y, t_vars *params)
 	if (button == 5)
 	{
 		params->scale *= 1.5;
+		params->zoom_times--;
 		offsetx = get_offsetx(x, xb, params);
 		offsety = get_offsety(y, yb, params);
 		zoom_in_mouse(offsetx, offsety, params);
 	}
 	else if (button == 4 && params->zoom_times < 35)
 	{
+		params->zoom_times++;
 		params->scale /= 1.5;
 		offsetx = get_offsetx(x, xb, params);
 		offsety = get_offsety(y, yb, params);

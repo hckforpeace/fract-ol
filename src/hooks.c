@@ -6,7 +6,7 @@
 /*   By: pbeyloun <pbeyloun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 09:53:32 by pierre            #+#    #+#             */
-/*   Updated: 2024/06/30 15:01:36 by pbeyloun         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:29:38 by pbeyloun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ int	mousemoves(int button, int x, int y, t_vars *params)
 	y++;
 	if (button == 5)
 	{
+		params->zoom_times--;
 		params->scale *= 1.1;
 		zoom_in_mouse(0.0, 0.0, params);
 	}
 	if (button == 4 && params->zoom_times < 35)
 	{
+		params->zoom_times++;
 		params->scale /= 1.1;
 		zoom_in_mouse(0.0, 0.0, params);
 	}
